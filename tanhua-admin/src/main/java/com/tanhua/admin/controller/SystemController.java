@@ -25,9 +25,10 @@ public class SystemController {
     private RedisTemplate<String,String> redisTemplate;
 
     //获取验证码图片
+    //前端传来一个uuid用来保证 验证码的key是唯一的
     @GetMapping("/verification")
     public void verification(String uuid, HttpServletResponse response) throws IOException {
-        //1、生成验证码对象
+        //1、生成验证码对象 使用工具包生成
         LineCaptcha captcha = CaptchaUtil.createLineCaptcha(299, 97);
         //2、验证码存入Redis
         String code = captcha.getCode();
