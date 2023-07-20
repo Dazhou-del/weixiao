@@ -1,6 +1,7 @@
 package com.tanhua.model.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,4 +35,8 @@ public class UserInfo implements Serializable {
     private String coverPic; // 封面图片
     private Date created;
     private Date updated;
+
+    //不映射此属性到数据库
+    @TableField(exist = false)
+    private String userStatus="1"; //用户是否冻结 1正常 2冻结
 }

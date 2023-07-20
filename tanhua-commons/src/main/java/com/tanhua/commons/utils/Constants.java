@@ -52,4 +52,7 @@ public class Constants {
 
     //关注用户的key
     public static final String FOCUS_USER_KEY = "FOCUS_USER_KEY_";
+
+    //冻结key USER_FREEZE
+    public static final String USER_FREEZE = "USER_FREEZE_";
 }

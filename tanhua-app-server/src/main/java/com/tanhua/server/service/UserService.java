@@ -34,12 +34,19 @@ public class UserService {
     @Autowired
     private HuanXinTemplate huanXinTemplate;
 
-
+    @Autowired
+    private UserFreezeService userFreezeService;
     /**
      * 发送短信验证码
      * @param phone
      */
     public void sendMsg(String phone) {
+        //根据手机号查询用户
+        User user = userApi.findByMobile(phone);
+        if (user!=null){
+            //判断用户是否被冻结
+            userFreezeService.checkUserStatus("1",user.getId());
+        }
         //1、随机生成6位数字
         //String code = RandomStringUtils.randomNumeric(6);
         String code = "123456";
