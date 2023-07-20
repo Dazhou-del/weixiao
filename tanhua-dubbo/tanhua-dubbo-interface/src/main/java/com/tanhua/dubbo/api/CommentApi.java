@@ -2,6 +2,7 @@ package com.tanhua.dubbo.api;
 
 import com.tanhua.model.enums.CommentType;
 import com.tanhua.model.mongo.Comment;
+import com.tanhua.model.vo.PageResult;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface CommentApi {
 
     //删除comment数据
     Integer delete(Comment comment);
+//    分页查询 有记录数
+    PageResult findCommentslit(String publishID, CommentType comment, Integer page, Integer pagesize);
 }

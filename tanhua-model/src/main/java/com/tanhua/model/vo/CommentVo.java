@@ -22,7 +22,7 @@ public class CommentVo implements Serializable {
     private String nickname; //昵称
 
 
-    private String content; //评论
+    private String content; //评论内容
     private String createDate; //评论时间
 
     private Integer likeCount; //点赞数

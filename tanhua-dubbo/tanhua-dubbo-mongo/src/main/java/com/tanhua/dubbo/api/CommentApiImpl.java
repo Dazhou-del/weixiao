@@ -3,6 +3,7 @@ package com.tanhua.dubbo.api;
 import com.tanhua.model.enums.CommentType;
 import com.tanhua.model.mongo.Comment;
 import com.tanhua.model.mongo.Movement;
+import com.tanhua.model.vo.PageResult;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,5 +95,20 @@ public class CommentApiImpl implements  CommentApi {
         Movement modify = mongoTemplate.findAndModify(movementQuery, update, options, Movement.class);
         //5、获取最新的评论数量，并返回
         return modify.statisCount(comment.getCommentType() );
+    }
+
+    @Override
+    public PageResult findCommentslit(String publishID, CommentType comment, Integer page, Integer pagesize) {
+        //1、构造查询条件
+        Query query = Query.query(Criteria.where("publishId").is(new ObjectId(publishID)).and("commentType")
+                        .is(comment.getType()));
+
+        long count = mongoTemplate.count(query, Comment.class);
+        //2、查询并返回
+        query.skip((page -1) * pagesize)
+                .limit(pagesize)
+                .with(Sort.by(Sort.Order.desc("created")));
+        List<Comment> comments = mongoTemplate.find(query, Comment.class);
+        return new PageResult(page,pagesize,count,comments);
     }
 }
