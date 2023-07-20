@@ -104,7 +104,7 @@ public class SmallVideosService {
                 List<Long> vids = Arrays.stream(values).skip((page - 1) * pagesize).limit(pagesize)
                         .map(e->Long.valueOf(e))
                         .collect(Collectors.toList());
-                //5、调用API根据PID数组查询动态数据
+                //5、调用API根据VID数组查询动态数据
                 list = videoApi.findMovementsByVids(vids);
             }
             redisPages = PageUtil.totalPage(values.length,pagesize);

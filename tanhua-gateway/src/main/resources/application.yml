@@ -30,3 +30,6 @@ spring:
             - Path=/app/**
           filters:
             - StripPrefix= 1
+
+gateway:
+  excludedUrls: /user/login,/user/loginVerification,/system/users/verification,/system/users/login
