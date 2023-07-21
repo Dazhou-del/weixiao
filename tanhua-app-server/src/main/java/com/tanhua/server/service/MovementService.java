@@ -150,8 +150,13 @@ public class MovementService {
         return getPageResult(page,pagesize,list);
     }
 
+    @Autowired
+    private MqMessageService mqMessageService;
     //根据id查询
     public MovementsVo findById(String movementId) {
+        //构建信息往MQ中发送信息
+        mqMessageService.sendLogService(UserHolder.getUserId(),"0202","user",null);
+
         //1、调用api根据id查询动态详情
         Movement movement = movementApi.findById(movementId);
         //2、转化vo对象

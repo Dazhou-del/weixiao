@@ -10,6 +10,7 @@ import com.tanhua.model.vo.ErrorResult;
 import com.tanhua.server.exception.BusinessException;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,10 @@ public class UserService {
 
     @Autowired
     private UserFreezeService userFreezeService;
+    @Autowired
+    private AmqpTemplate amqpTemplate;
+    @Autowired
+    private MqMessageService mqMessageService;
     /**
      * 发送短信验证码
      * @param phone
@@ -76,7 +81,9 @@ public class UserService {
         User user = userApi.findByMobile(phone);
         boolean isNew = false;
         //5、如果用户不存在，创建用户保存到数据库中
+        String type="0101";//登录
         if(user == null) {
+            type="0102";//注册
             user = new User();
             user.setMobile(phone);
             user.setPassword(DigestUtils.md5Hex("123456"));
@@ -93,6 +100,11 @@ public class UserService {
                 userApi.update(user);
             }
         }
+
+        //构建信息往MQ中发送信息
+        mqMessageService.sendLogService(user.getId(),type,"user",null);
+
+
         //6、通过JWT生成token(存入id和手机号码)
         Map tokenMap = new HashMap();
         tokenMap.put("id",user.getId());

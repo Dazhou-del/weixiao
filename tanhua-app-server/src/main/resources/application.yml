@@ -11,6 +11,11 @@ spring:
     nacos:
       discovery:
         server-addr: 192.168.136.160:8848
+  rabbitmq:
+    host: 192.168.136.160
+    port: 5672
+    username: guest
+    password: guest
 dubbo:    #dubbo配置
   registry:
     address: spring-cloud://localhost
