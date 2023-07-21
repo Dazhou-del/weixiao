@@ -40,4 +40,10 @@ public class TanhuaAutoConfiguration {
         return new HuanXinTemplate(properties);
     }
 
+//    @Bean
+//    @ConditionalOnProperty(prefix = "tanhua.green",value = "enable", havingValue = "true")
+//    public AliyunGreenTemplate aliyunGreenTemplate(GreenProperties properties) {
+//        return new AliyunGreenTemplate(properties);
+//    }
+
 }
