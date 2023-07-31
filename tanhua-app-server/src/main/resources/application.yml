@@ -29,22 +29,22 @@ tanhua:
   sms:
     signName: 大洲
     templateCode: SMS_461855349
-    accessKey: LTAI5t6mxq4iah9AfrXLGyWK
-    secret: AFeDlLcU5d5cxzCitHIq9x8wLjoGRf
+    accessKey:
+    secret:
   oss:
-    accessKey: LTAI5tGBPNsnGPrFm1FbfMwW
-    secret: DyughXRNJ1ryyzCQNjEVRORI2WoYku
-    endpoint: oss-cn-guangzhou.aliyuncs.com
+    accessKey:
+    secret:
+    endpoint:
     bucketName: dazhou123
-    url: https://dazhou123.oss-cn-guangzhou.aliyuncs.com/
+    url:
   aip:
-    appId: 36050788
-    apiKey: nIUw5C5qa9Lur6m8a5ohdf2X
-    secretKey: YTG2qiWAGosq8EgIZSxACnzLDSNawGUF
+    appId:
+    apiKey:
+    secretKey:
   huanxin:
-    appkey: 1146230717209533#weixiao
-    clientId: YXA67561g31JQxmh2UoPESFe8g
-    clientSecret: YXA6F-YVOpHCaozTYoO-JhhI9x3rqBc
+    appkey:
+    clientId:
+    clientSecret:
 fdfs:
   so-timeout: 1500
   connect-timeout: 600
